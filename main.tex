@@ -1,0 +1,85 @@
+%
+\documentclass[hdr, twoside, final]{unswthesis}
+\usepackage{mystyle} % all include packages and definitions
+\makeatletter
+\fancypagestyle{noHeading}{
+        \fancyhead{}
+        \renewcommand{\headrulewidth}{0pt}
+}
+\raggedbottom
+
+\include{mythesisDetails} % Thesis details e.g. Title
+
+\newcommand*\mean[1]{\overline{#1}}
+\newcommand*{\Perm}[2]{{}^{#1}\!P_{#2}}
+
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\graphicspath{{2-intro/}{3-literature/}{4-techchapter/}{5-techchapter/}{6-techchapter/}{8-appendices/}}
+
+
+\newcommand\blankpage{
+        \null
+        \thispagestyle{empty}
+        \addtocounter{page}{-1}
+        \newpage
+}
+
+\begin{document}
+    
+    \renewcommand{\bibname}{References}
+    %% pages in the ``frontmatter'' section have roman numeral page number
+    \frontmatter  
+    \maketitle
+    
+    %the forms from GRIS printed as pdf
+    %\includepdf[pages=1]{1-pre/GRIS.pdf}
+    %\includepdf[pages=1]{1-pre/GRIS2.pdf}
+    % \afterpage{\blankpage}
+
+    \include{1-pre/abstract}
+    \include{1-pre/ack}
+    \include{1-pre/publications}
+    
+    %\setcounter{tocdepth}{4}
+    \tableofcontents
+    %\addcontentsline{toc}{chapter}{\listfigurename}
+    \listoffigures  % if required
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables  % if required
+    \include{1-pre/abbreviations} % if required
+    
+    %% pages in the ``mainmatter'' section have arabic page numbers and chapters are numbered
+    \mainmatter
+    \pagestyle{fancy}
+        \fancyhf{}
+        \fancyhead[LE]{\leftmark}
+        \fancyhead[RO]{\rightmark}
+        \fancyfoot[C]{\thepage}
+        \renewcommand{\headrulewidth}{1pt}
+        \setcounter{secnumdepth}{3}
+   
+   
+    %chapters
+    \include{2-intro/main}
+    \include{3-literature/main}
+    \include{4-techchapter/main}
+    \include{5-techchapter/main}
+    \include{6-techchapter/main}
+    \include{7-conclusion/main}
+   
+    \clearpage
+   
+    %appendices
+    \appendix
+    \include{8-appendices/appendix1}
+    \include{8-appendices/appendix2}
+   
+    \clearpage
+    
+    \backmatter
+    
+    \pagestyle{noHeading}
+    \bibliographystyle{IEEEtran}
+    \bibliography{references}
+
+\end{document}
